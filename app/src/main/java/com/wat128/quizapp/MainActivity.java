@@ -7,11 +7,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView countLabel;
-    private TextView qustionLabel;
+    private TextView questionLabel;
     private Button answarBtn1, answarBtn2, answarBtn3, answarBtn4;
 
     private String rightAnswer;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         countLabel = findViewById(R.id.countLabel);
-        qustionLabel = findViewById(R.id.questionLavel);
+        questionLabel = findViewById(R.id.questionLavel);
         answarBtn1 = findViewById(R.id.answerBtn1);
         answarBtn2 = findViewById(R.id.answerBtn2);
         answarBtn3 = findViewById(R.id.answerBtn3);
@@ -57,5 +59,31 @@ public class MainActivity extends AppCompatActivity {
 
             quizArray.add(tmpArray);
         }
+
+        showNextQuiz();
+    }
+
+    public void showNextQuiz() {
+        countLabel.setText("Q" + quizCount);
+
+        Random random = new Random();
+        int randomNum = random.nextInt(quizArray.size());
+
+        ArrayList<String> quiz = quizArray.get(randomNum);
+
+        questionLabel.setText(quiz.get(0));
+
+        rightAnswer = quiz.get(1);
+
+        quiz.remove(0);
+
+        Collections.shuffle(quiz);
+
+        answarBtn1.setText(quiz.get(0));
+        answarBtn2.setText(quiz.get(1));
+        answarBtn3.setText(quiz.get(2));
+        answarBtn4.setText(quiz.get(3));
+
+        quizArray.remove(randomNum);
     }
 }

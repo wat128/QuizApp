@@ -28,7 +28,7 @@
     <Button
         android:id="@+id/answerBtn1"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:text="answar1"
         android:layout_marginTop="80dp"
         android:onClick="checkAnswer"/>
